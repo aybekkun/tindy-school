@@ -1,0 +1,507 @@
+{
+	"info": {
+		"_postman_id": "771718f0-cd23-44ef-b355-26259ee74717",
+		"name": "LMSTindy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "43108300",
+		"_collection_link": "https://web.postman.co/workspace/Team-Workspaces~684bd345-7d4a-4398-bd7f-22e1424d0e62/collection/37597391-771718f0-cd23-44ef-b355-26259ee74717?action=share&source=collection_link&creator=43108300"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Category",
+					"item": [
+						{
+							"name": "/category",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/category",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"category"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "qwerty",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "admins/category/{id}",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{base_url}}/category/1"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Levels",
+					"item": [
+						{
+							"name": "/levels",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/levels",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"levels"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "qwerty",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/levels/{id}",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{base_url}}/levels/1"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "MyCarts",
+					"item": [
+						{
+							"name": "/carts",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{base_url}}/carts"
+							},
+							"response": []
+						},
+						{
+							"name": "/carts",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "course_id",
+											"value": "f9b91b9a-165b-4065-a5c2-89713b04ff73",
+											"type": "text"
+										}
+									]
+								},
+								"url": "{{base_url}}/carts"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "MyProgress",
+					"item": [
+						{
+							"name": "my-progress",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": "{{base_url}}/my-progress"
+							},
+							"response": []
+						},
+						{
+							"name": "my-progress/{course_id}",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": "{{base_url}}/my-progress/f9b91b9a-165b-4065-a5c2-89713b04ff73"
+							},
+							"response": []
+						},
+						{
+							"name": "my-progress/{course_id}",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "lesson_id",
+											"value": "fa848f6f-045c-45fb-9cf6-1c24b10ccd53",
+											"type": "text"
+										}
+									]
+								},
+								"url": "{{base_url}}/my-progress/f9b91b9a-165b-4065-a5c2-89713b04ff73"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Collections",
+					"item": [
+						{
+							"name": "collections",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "{{base_url}}/collections"
+							},
+							"response": []
+						},
+						{
+							"name": "/collections/{slug}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "{{base_url}}/collections/test"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Course",
+					"item": [
+						{
+							"name": "/my-courses",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{base_url}}/my-courses"
+							},
+							"response": []
+						},
+						{
+							"name": "/courses",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/courses",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"courses"
+									],
+									"query": [
+										{
+											"key": "category",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "level",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "is_free",
+											"value": "False",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/courses/{slug or id}",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": "{{base_url}}/courses/test-4"
+							},
+							"response": []
+						},
+						{
+							"name": "/courses/{slug or id}/allowed",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": "{{base_url}}/courses/test-4/allowed"
+							},
+							"response": []
+						},
+						{
+							"name": "/courses/{course_slug}/modules",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n  { \"id\": \"f3c7d090-15f2-478c-9e21-78abd79960e8\", \"index\": 1 },\r\n  { \"id\": \"2454e170-6759-46e1-a98a-d26e72021554\", \"index\": 2 },\r\n  { \"id\": \"6eeb6b90-8a8b-4642-a1a9-9c12e0dd012a\", \"index\": 3 }\r\n]\r\n"
+								},
+								"url": "{{base_url}}/courses/test-4/modules"
+							},
+							"response": []
+						},
+						{
+							"name": "/modules/{slug}",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{base_url}}/modules/test-2"
+							},
+							"response": []
+						},
+						{
+							"name": "/modules/{slug}/lessons",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{base_url}}/modules/test-2/lessons"
+							},
+							"response": []
+						},
+						{
+							"name": "/lessons/{slug}",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{base_url}}/lessons/test-1"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Orders",
+					"item": [
+						{
+							"name": "/orders",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{base_url}}/orders"
+							},
+							"response": []
+						},
+						{
+							"name": "/orders",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"course_ids\":[\"f9b91b9a-165b-4065-a5c2-89713b04ff73\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{base_url}}/orders"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": ""
+		},
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}
