@@ -1,5 +1,6 @@
 "use client"
 
+import { Button } from "@/components/ui"
 import { Progress } from "@/components/ui/progress"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import {
@@ -17,16 +18,12 @@ import { ICourse } from "@/services/course"
 import { ArrowLeft, Book, Settings, User } from "lucide-react"
 import Link from "next/link"
 import { LessonSidebarAccordion } from "./lesson-sidebar-acordion"
-import { useRouter } from "next/navigation"
-import { Button } from "@/components/ui"
 
 type Props = {
 	course?: ICourse
 }
 
 export function LessonSidebar({ course }: Props) {
-	const router = useRouter()
-
 	const totalLessons =
 		course?.modules.reduce(
 			(acc, module) => acc + (module.lessons?.length || 0),
@@ -45,15 +42,11 @@ export function LessonSidebar({ course }: Props) {
 			<SidebarHeader className="bg-neutral-100 border-b">
 				<SidebarMenu>
 					<SidebarMenuItem>
-						<Button
-							variant={"link"}
-							onClick={() =>
-								router.push(ROUTES.COURSES.SINGLE(course?.slug || ""))
-							}
-							className="text-foreground"
-						>
-							<ArrowLeft className="w-4 h-4" />
-							Kursqa qaytıw
+						<Button variant={"link"} className="text-foreground" asChild>
+							<Link href={ROUTES.COURSES.SINGLE(course?.slug || "")}>
+								<ArrowLeft className="w-4 h-4" />
+								Kursqa qaytıw
+							</Link>
 						</Button>
 					</SidebarMenuItem>
 				</SidebarMenu>

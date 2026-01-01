@@ -13,5 +13,6 @@ export const useGetCourseProgress = (courseId: string) => {
 		queryKey: ["course-progress", courseId],
 		queryFn: () => ProgressService.getProgressByCourseId(courseId),
 		enabled: !!courseId,
+		staleTime: 0,
 	})
 }

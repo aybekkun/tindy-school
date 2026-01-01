@@ -20,7 +20,7 @@ import {
 	ShoppingBag,
 	ShoppingCart,
 } from "lucide-react"
-import { useRouter } from "next/navigation"
+import Link from "next/link"
 import { useState } from "react"
 import { navLinks } from "./nav-links"
 
@@ -31,7 +31,6 @@ type Props = {
 export function MobileNav({ className }: Props) {
 	const { isAuth, logout } = useAuthStore()
 	const [isOpen, setIsOpen] = useState(false)
-	const router = useRouter()
 
 	return (
 		<Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -56,71 +55,82 @@ export function MobileNav({ className }: Props) {
 					{navLinks.map((link, index) => (
 						<Button
 							key={index}
-							onClick={() => {
-								router.push(link.href)
-								setIsOpen(false)
-							}}
 							variant="ghost"
 							size="sm"
 							className="justify-start"
+							asChild
 						>
-							{link.title}
+							<Link href={link.href} onClick={() => setIsOpen(false)}>
+								{link.title}
+							</Link>
 						</Button>
 					))}
 					<Separator className="my-1" />
 					{isAuth ? (
 						<>
-							<Button variant="ghost" size="sm" className="justify-start">
-								<Book />
-								Meniń kurslarım
-							</Button>
 							<Button
-								onClick={() => {
-									router.push(ROUTES.PROFILE.ROOT)
-									setIsOpen(false)
-								}}
 								variant="ghost"
 								size="sm"
 								className="justify-start"
+								asChild
 							>
-								<ChartArea />
-								Progress
+								<Link
+									href={ROUTES.PROFILE.MY_COURSES}
+									onClick={() => setIsOpen(false)}
+								>
+									<Book />
+									Meniń kurslarım
+								</Link>
 							</Button>
 							<Button
-								onClick={() => {
-									router.push(ROUTES.MY_ORDERS)
-									setIsOpen(false)
-								}}
 								variant="ghost"
 								size="sm"
 								className="justify-start"
+								asChild
 							>
-								<ShoppingBag />
-								Meniń buyırtpalarım
+								<Link
+									href={ROUTES.PROFILE.ROOT}
+									onClick={() => setIsOpen(false)}
+								>
+									<ChartArea />
+									Progress
+								</Link>
 							</Button>
 							<Button
-								onClick={() => {
-									router.push(ROUTES.CART)
-									setIsOpen(false)
-								}}
 								variant="ghost"
 								size="sm"
 								className="justify-start"
+								asChild
 							>
-								<ShoppingCart />
-								Korzina
+								<Link href={ROUTES.MY_ORDERS} onClick={() => setIsOpen(false)}>
+									<ShoppingBag />
+									Meniń buyırtpalarım
+								</Link>
 							</Button>
 							<Button
-								onClick={() => {
-									router.push(ROUTES.PROFILE.SETTINGS)
-									setIsOpen(false)
-								}}
 								variant="ghost"
 								size="sm"
 								className="justify-start"
+								asChild
 							>
-								<Settings />
-								Sazlamlar
+								<Link href={ROUTES.CART} onClick={() => setIsOpen(false)}>
+									<ShoppingCart />
+									Korzina
+								</Link>
+							</Button>
+							<Button
+								variant="ghost"
+								size="sm"
+								className="justify-start"
+								asChild
+							>
+								<Link
+									href={ROUTES.PROFILE.SETTINGS}
+									onClick={() => setIsOpen(false)}
+								>
+									<Settings />
+									Sazlamlar
+								</Link>
 							</Button>
 							<Button
 								onClick={logout}
@@ -134,24 +144,21 @@ export function MobileNav({ className }: Props) {
 						</>
 					) : (
 						<>
-							<Button
-								onClick={() => {
-									router.push(ROUTES.AUTH.LOGIN())
-									setIsOpen(false)
-								}}
-								variant="outline"
-								size="sm"
-							>
-								Kiriw
+							<Button variant="outline" size="sm" asChild>
+								<Link
+									href={ROUTES.AUTH.LOGIN()}
+									onClick={() => setIsOpen(false)}
+								>
+									Kiriw
+								</Link>
 							</Button>
-							<Button
-								onClick={() => {
-									router.push(ROUTES.AUTH.REGISTER())
-									setIsOpen(false)
-								}}
-								size="sm"
-							>
-								Registratsiya
+							<Button size="sm" asChild>
+								<Link
+									href={ROUTES.AUTH.REGISTER()}
+									onClick={() => setIsOpen(false)}
+								>
+									Registratsiya
+								</Link>
 							</Button>
 						</>
 					)}

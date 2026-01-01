@@ -33,18 +33,13 @@ export const useLoginForm = () => {
 		mutationFn: AuthService.login,
 		onSuccess: async () => {
 			try {
-				// 1. Принудительно запрашиваем свежие данные профиля
-				// fetchQuery выполнит запрос и вернет результат
 				const profileData = await queryClient.fetchQuery({
 					queryKey: ["profile"],
-					queryFn: AuthService.getProfile, // Убедитесь, что этот метод есть
+					queryFn: AuthService.getProfile,
 				})
 
-				// 2. Устанавливаем состояние авторизации с полученными данными
-				// Предполагаю структуру: profileData.data.data исходя из вашего кода
 				setAuthState("authenticated", profileData?.data)
 
-				// 3. Только после получения данных делаем редирект
 				if (redirectTo) {
 					router.replace(redirectTo)
 				} else {

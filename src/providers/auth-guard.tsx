@@ -11,7 +11,8 @@ import {
 import { ROUTES } from "@/constants"
 import { useAuthStore } from "@/store"
 import { Lock } from "lucide-react"
-import { usePathname, useRouter } from "next/navigation"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { ReactNode } from "react"
 
 interface AuthGuardProps {
@@ -27,7 +28,6 @@ export const AuthGuard = ({
 }: AuthGuardProps) => {
 	const { isAuth, status } = useAuthStore()
 	const pathname = usePathname()
-	const router = useRouter()
 
 	if (status === "loading") {
 		return (
@@ -54,19 +54,11 @@ export const AuthGuard = ({
 						</div>
 					</CardHeader>
 					<CardFooter className="flex flex-col sm:flex-row gap-3 pt-2">
-						<Button
-							onClick={() => router.push(ROUTES.AUTH.LOGIN(pathname))}
-							className="w-full"
-							variant="default"
-						>
-							Kiriw
+						<Button className="w-full" variant="default" asChild>
+							<Link href={ROUTES.AUTH.LOGIN(pathname)}>Kiriw</Link>
 						</Button>
-						<Button
-							onClick={() => router.push(ROUTES.AUTH.REGISTER(pathname))}
-							className="w-full"
-							variant="outline"
-						>
-							Dizimnen ótiw
+						<Button className="w-full" variant="outline" asChild>
+							<Link href={ROUTES.AUTH.REGISTER(pathname)}>Dizimnen ótiw</Link>
 						</Button>
 					</CardFooter>
 				</Card>
