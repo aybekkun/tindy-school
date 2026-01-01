@@ -1,9 +1,9 @@
 import { SidebarConfig } from "@/components/shared"
 import {
+	Award,
 	BookOpen,
 	ChartArea,
 	HelpCircle,
-	LayoutDashboard,
 	LogOut,
 	Settings,
 } from "lucide-react"
@@ -13,14 +13,8 @@ export const studentSidebarConfig: SidebarConfig[] = [
 		title: "Tiykarǵı",
 		items: [
 			{
-				title: "Bas bet",
-				href: "/student",
-				icon: LayoutDashboard,
-				description: "Sholuw hám statistika",
-			},
-			{
 				title: "Meniń kurslarım",
-				href: "/student/my-courses",
+				href: "/student",
 				icon: BookOpen,
 				description: "Aktiv hám tamamlanǵan kurslar",
 			},
@@ -29,6 +23,12 @@ export const studentSidebarConfig: SidebarConfig[] = [
 				href: "/student/my-progress",
 				icon: ChartArea,
 				description: "Sońǵı sabaqlar",
+			},
+			{
+				title: "Sertifikatlar",
+				href: "/student/certificates",
+				icon: Award,
+				description: "Alınǵan sertifikatlar",
 			},
 		],
 	},

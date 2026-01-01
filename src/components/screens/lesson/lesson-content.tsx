@@ -1,8 +1,8 @@
 "use client"
+import { EditorDataParser } from "@/components/shared"
 import { Skeleton } from "@/components/ui"
 import { CourseService } from "@/services/course"
 import { useQuery } from "@tanstack/react-query"
-import parse from "html-react-parser"
 import { type FC } from "react"
 
 interface Props {
@@ -41,13 +41,7 @@ export const LessonContent: FC<Props> = ({ className = ``, lessonId }) => {
 			)}
 
 			{/* Lesson content */}
-			{data?.data.content && (
-				<>
-					<div className="mt-6 prose prose-neutral max-w-none dark:prose-invert">
-						<div>{parse(data.data.content)}</div>
-					</div>
-				</>
-			)}
+			{data?.data.content && <EditorDataParser data={data.data.content} />}
 		</div>
 	)
 }

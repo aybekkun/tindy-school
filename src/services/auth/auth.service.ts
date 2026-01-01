@@ -8,12 +8,14 @@ import {
 	setVerifyToken,
 } from "@/lib/api"
 import {
+	IChangePasswordRequest,
 	ICompleteRegistrationRequest,
 	ICompleteRegistrationResponse,
 	ILoginRequest,
 	ILoginResponse,
 	INewPasswordRequest,
 	INewPasswordResponse,
+	IProfileUpdateResponse,
 	IResetPasswordRequest,
 	IResetPasswordResponse,
 	IResetVerifyRequest,
@@ -21,6 +23,7 @@ import {
 	ISendOtpRequest,
 	ISentOtpResponse,
 	ITokenRefresh,
+	IUpdateProfileRequest,
 	IUserProfileResponse,
 	IVerifyOtpRequest,
 	IVerifyOtpResponse,
@@ -79,6 +82,21 @@ export const AuthService = {
 	},
 	newPassword: async (data: INewPasswordRequest) => {
 		const res = await $host.post<INewPasswordResponse>("/new-password", data)
+		return res.data
+	},
+	updateProfile: async (
+		data: IUpdateProfileRequest | IChangePasswordRequest
+	) => {
+		const res = await $authHost.patch<IProfileUpdateResponse>("/profile", data)
+		return res.data
+	},
+	updateAvatar: async (avatar: File) => {
+		const formData = new FormData()
+		formData.append("avatar", avatar)
+		const res = await $authHost.patch<IProfileUpdateResponse>(
+			"/profile",
+			formData
+		)
 		return res.data
 	},
 	logout: () => {

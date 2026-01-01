@@ -32,13 +32,27 @@ export const useLoginForm = () => {
 	const loginMutation = useMutation({
 		mutationFn: AuthService.login,
 		onSuccess: async () => {
-			await queryClient.invalidateQueries({
-				queryKey: ["profile"],
-			})
-			if (redirectTo) {
-				router.replace(redirectTo)
-			} else {
-				router.replace("/")
+			try {
+				// 1. Принудительно запрашиваем свежие данные профиля
+				// fetchQuery выполнит запрос и вернет результат
+				const profileData = await queryClient.fetchQuery({
+					queryKey: ["profile"],
+					queryFn: AuthService.getProfile, // Убедитесь, что этот метод есть
+				})
+
+				// 2. Устанавливаем состояние авторизации с полученными данными
+				// Предполагаю структуру: profileData.data.data исходя из вашего кода
+				setAuthState("authenticated", profileData?.data)
+
+				// 3. Только после получения данных делаем редирект
+				if (redirectTo) {
+					router.replace(redirectTo)
+				} else {
+					router.replace("/")
+				}
+			} catch (error) {
+				console.error("Ошибка при получении профиля:", error)
+				// Здесь можно обработать ошибку получения профиля отдельно
 			}
 		},
 		onError: (error: ResponseError) => {

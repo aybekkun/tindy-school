@@ -7,4 +7,5 @@ export interface IProgress {
 	progress_percent: number
 	created_at: Date
 	updated_at: Date
+	course_id: string
 }

@@ -1,5 +1,7 @@
-const SettingsPage = () => {
-	return <div>SettingsPage</div>
+import { SettingsPage } from "@/components/screens/student/settings"
+
+const Page = () => {
+	return <SettingsPage />
 }
 
-export default SettingsPage
+export default Page

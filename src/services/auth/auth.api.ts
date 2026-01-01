@@ -100,3 +100,29 @@ export const useNewPassword = () => {
 		},
 	})
 }
+
+export const useUpdateProfile = () => {
+	const queryClient = useQueryClient()
+	return useMutation({
+		mutationFn: AuthService.updateProfile,
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ["profile"] })
+		},
+		onError: (error: ResponseError) => {
+			errorCatch(error)
+		},
+	})
+}
+
+export const useUpdateAvatar = () => {
+	const queryClient = useQueryClient()
+	return useMutation({
+		mutationFn: AuthService.updateAvatar,
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ["profile"] })
+		},
+		onError: (error: ResponseError) => {
+			errorCatch(error)
+		},
+	})
+}

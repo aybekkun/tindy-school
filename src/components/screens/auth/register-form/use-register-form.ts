@@ -16,6 +16,7 @@ import {
 } from "@/lib/api"
 import { formatPhone } from "@/lib/utils/format.utils"
 import { AuthService } from "@/services/auth/auth.service"
+import { useAuthStore } from "@/store"
 
 // Schemas
 const phoneSchema = z.object({
@@ -39,6 +40,7 @@ export type OtpSchemaType = z.infer<typeof otpSchema>
 export type CompleteSchemaType = z.infer<typeof completeSchema>
 
 export const useRegisterForm = () => {
+	const { setAuthState } = useAuthStore()
 	const router = useRouter()
 	const queryClient = useQueryClient()
 	const [currentStep, setCurrentStep] = useState(1)
@@ -92,14 +94,32 @@ export const useRegisterForm = () => {
 		mutationFn: AuthService.completeRegistration,
 		onSuccess: async () => {
 			toast.success("Registratsiya tamamlandı!")
-			await queryClient.invalidateQueries({ queryKey: ["profile"] })
-			router.replace("/")
+
+			try {
+				// fetchQuery сам обновит кэш ["profile"] и вернет результат
+				const profile = await queryClient.fetchQuery({
+					queryKey: ["profile"],
+					queryFn: AuthService.getProfile,
+					// Опционально: укажите staleTime: 0, чтобы точно получить свежие данные
+					staleTime: 0,
+				})
+
+				// Устанавливаем данные (проверьте, нужно ли profile.data или profile.data.data)
+				const userData = profile?.data
+				setAuthState("authenticated", userData)
+
+				// Редирект только после того, как состояние обновлено
+				router.replace("/")
+			} catch (error) {
+				// Если профиль не загрузился, можно отправить на логин или показать ошибку
+				console.error("Ошибка при получении профиля после регистрации:", error)
+				router.replace("/login")
+			}
 		},
 		onError: (error: ResponseError) => {
 			errorCatch(error)
 		},
 	})
-
 	// Handlers
 	const handlePhoneSubmit = (data: PhoneSchemaType) => {
 		setPhone(data.phone)

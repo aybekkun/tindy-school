@@ -98,3 +98,19 @@ export interface INewPasswordRequest {
 export interface INewPasswordResponse {
 	message: string
 }
+
+export interface IUpdateProfileRequest {
+	first_name?: string
+	last_name?: string
+	bio?: string
+}
+
+export interface IChangePasswordRequest {
+	old_password?: string
+	password?: string
+}
+
+export interface IProfileUpdateResponse {
+	message: string
+	data: IUserProfile
+}
